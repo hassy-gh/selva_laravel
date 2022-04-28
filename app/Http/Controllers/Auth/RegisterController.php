@@ -53,7 +53,7 @@ class RegisterController extends Controller
      */
     public function __construct()
     {
-        $this->middleware('guest', ['except' => 'complete']);
+        $this->middleware('guest');
     }
 
     /**
@@ -132,7 +132,7 @@ class RegisterController extends Controller
 
         $request->session()->forget('form_input');
 
-        $this->guard()->login($member, true);
+        // $this->guard()->login($member, true);
 
         return $this->registered($request, $member) ?: redirect($this->redirectPath());
     }
@@ -162,11 +162,16 @@ class RegisterController extends Controller
     {
         $input = $request->session()->get('form_input');
 
+        $gender = config('master.gender');
+
         if (!$input) {
             return redirect()->action('Auth\RegisterController');
         }
 
-        return view('auth.register.confirm', ['input' => $input]);
+        return view('auth.register.confirm', [
+            'input' => $input,
+            'gender' => $gender
+        ]);
     }
 
     /**

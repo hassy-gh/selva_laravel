@@ -32,7 +32,7 @@
           <tr class="gender">
             <th>性別</th>
             <td>
-              {{ $input['gender'] == 1 ? '男性' : '女性' }}
+              {{ $gender[$input['gender']] }}
               <input type="hidden" name="gender" value="{{ $input['gender'] }}">
             </td>
           </tr>
