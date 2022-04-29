@@ -12,6 +12,9 @@
       <div class="member-register-complete">
         <p>会員登録が完了しました。</p>
       </div>
+      <div class="back">
+        <a href="/" class="btn">トップに戻る</a>
+      </div>
     </div>
   </div>
 </div>

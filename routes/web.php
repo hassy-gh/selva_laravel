@@ -22,5 +22,6 @@ Route::post('/register', 'Auth\RegisterController@post')->name('member.register_
 Route::get('/register/confirm', 'Auth\RegisterController@confirm')->name('member.register_confirm');
 Route::post('/register/confirm', 'Auth\RegisterController@register')->name('member.register_register');
 Route::get('/register/complete', 'Auth\RegisterController@complete')->name('member.register_complete');
+Route::get('/password/send', 'Auth\ForgotPasswordController@showSendEmail')->name('password.send');
 
 Route::get('/home', 'HomeController@index')->name('home');

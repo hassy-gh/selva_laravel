@@ -102,6 +102,9 @@
                 <div class="submit">
                     <button type="submit" class="btn">確認画面へ</button>
                 </div>
+                <div class="back">
+                    <a href="/" class="btn">トップに戻る</a>
+                </div>
             </form>
         </div>
     </div>

@@ -25,15 +25,57 @@ h2 {
 .submit .btn {
     background-color: #ed7d32;
     color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
 }
 
 .back .btn {
     background: #fff;
     color: #ed7d32;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
     margin-top: 30px;
 }
 
+/* header */
+header {
+    position: fixed;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    background-color: #fbe4d5;
+}
+
+.header-left {
+    float: left;
+    padding: 15px 30px;
+}
+
+.header-left p {
+    font-size: 20px;
+}
+
+.header-right {
+    float: right;
+}
+
+header .btn {
+    background-color: #fbe4d5;
+    border: 2px solid black;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 7px;
+    margin-right: 20px;
+}
+
 /* form */
+.form {
+    width: 100%;
+}
+
 .form th {
     width: 30%;
     text-align: left;
