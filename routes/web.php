@@ -25,3 +25,10 @@ Route::get('/register/complete', 'Auth\RegisterController@complete')->name('memb
 Route::get('/password/send', 'Auth\ForgotPasswordController@showSendEmail')->name('password.send');
 
 Route::get('/home', 'HomeController@index')->name('home');
+
+
+Route::middleware('auth')
+    ->group(function () {
+        Route::get('/sell', 'SellController@showSellForm')->name('sell.show');
+        Route::post('/category', 'SellController@category')->name('sell.category');
+    });

@@ -9,6 +9,7 @@
     <p>ようこそ {{ auth()->user()->name_sei }} {{ auth()->user()->name_mei }}様</p>
   </div>
   <div class="header-right">
+    <a href="{{ route('sell.show') }}" class="btn">新規商品登録</a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST">
       @csrf
       <button class="btn" type="submit">ログアウト</button>

@@ -71,6 +71,10 @@ header .btn {
     margin-right: 20px;
 }
 
+#logout-form {
+    display: inline-block;
+}
+
 /* form */
 .form {
     width: 100%;
@@ -98,6 +102,11 @@ header .btn {
 
 .email td {
     color: #0c63c1;
+}
+
+.product-form .name input,
+.product-form .product-content textarea {
+    width: 100%;
 }
 
 /* error-message */
