@@ -32,29 +32,46 @@ const app = new Vue({
 });
 
 // 親カテゴリのselect要素が変更になるとイベントが発生
-  $('#parent').on('change', function() {
-      var cate_val = $(this).val();
+$('#parent').on('change', function() {
+  var cate_val = $(this).val();
 
-      $.ajax({
-          headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-          },
-          url: '/category',
-          type: 'POST',
-          data: {
-            'category_val': cate_val
-          },
-          datatype: 'json',
-        })
-        .done(function(data) {
-          // 子カテゴリのoptionを一旦削除
-          $('#child option').remove();
-          // DBから受け取ったデータを子カテゴリのoptionにセット
-          $.each(data, function(key, value) {
-            $('#child').append($('<option>').text(value.name).attr('value', value.id));
-          })
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/category',
+    type: 'POST',
+    data: {
+      'category_val': cate_val
+    },
+    datatype: 'json',
+  })
+    .done(function(data) {
+      // 子カテゴリのoptionを一旦削除
+      $('#child option').remove();
+      // DBから受け取ったデータを子カテゴリのoptionにセット
+      $.each(data, function(key, value) {
+        $('#child').append($('<option>').text(value.name).attr('value', value.id));
       })
-      .fail(function() {
-          console.log('失敗');
-      });
+    })
+    .fail(function() {
+      console.log('失敗');
+    });
+});
+
+$('#image_1').on('change', function() {
+  var formData = new FormData();
+  formData.append('image', $('#image_1')[0].files[0]);
+
+  $.ajax({
+    headers: {
+      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+    },
+    url: '/image-upload',
+    type: 'POST',
+    data: formData,
+    dataType: 'json',
+    processData: false,
+    contentType: false,
   });
+});

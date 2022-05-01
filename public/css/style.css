@@ -109,6 +109,14 @@ header .btn {
     width: 100%;
 }
 
+.category select {
+    width: 40%;
+}
+
+input[type="file"] {
+    display: none;
+}
+
 /* error-message */
 .error-messages {
     color: red;

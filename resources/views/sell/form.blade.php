@@ -9,7 +9,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <h2>商品登録</h2>
-      <form action="" method="POST" class="product-form">
+      <form action="{{ route('sell.sell') }}" method="POST" class="product-form" enctype="multipart/form-data">
         @csrf
         <table class="form">
           <tr class="name">
@@ -27,13 +27,24 @@
             <th>商品カテゴリ</th>
             <td>
               <select name="product_category_id" id="parent">
+                <option value="" hidden>選択してください</option>
                 @foreach ($categories as $category)
-                <option value="{{ $category->id }}">
+                <option value="{{ $category->id }}" {{ old('product_category_id') == $category->id ? 'selected' : '' }}>
                   {{ $category->name }}
                 </option>
                 @endforeach
               </select>
-              <select name="product_subcategory_id" id="child"></select>
+              <select name="product_subcategory_id" id="child">
+                @if (old('product_subcategory_id'))
+                @foreach ($subcategories as $subcategory)
+                @if (old('product_category_id') == $subcategory->product_category_id)
+                <option value="{{ $subcategory->id }}" {{ old('product_subcategory_id') == $subcategory->id ? 'selected' : '' }}>
+                  {{ $subcategory->name }}
+                </option>
+                @endif
+                @endforeach
+                @endif
+              </select>
             </td>
           </tr>
           @error('product_category_id')
@@ -53,7 +64,10 @@
             <th></th>
             <td>
               <p>写真1</p>
-              <input type="file" name="image_1">
+              <input type="file" name="image_1" id="image_1">
+              <label for="image_1" class="back">
+                <p class="btn">アップロード</p>
+              </label>
             </td>
           </tr>
           @error('image_1')
@@ -67,7 +81,10 @@
             <th></th>
             <td>
               <p>写真2</p>
-              <input type="file" name="image_2">
+              <input type="file" name="image_2" id="image_2">
+              <label for="image_2" class="back">
+                <p class="btn">アップロード</p>
+              </label>
             </td>
           </tr>
           @error('image_2')
@@ -81,7 +98,10 @@
             <th></th>
             <td>
               <p>写真3</p>
-              <input type="file" name="image_3">
+              <input type="file" name="image_3" id="image_3">
+              <label for="image_3" class="back">
+                <p class="btn">アップロード</p>
+              </label>
             </td>
           </tr>
           @error('image_3')
@@ -95,7 +115,10 @@
             <th></th>
             <td>
               <p>写真4</p>
-              <input type="file" name="image_4">
+              <input type="file" name="image_4" id="image_4">
+              <label for="image_4" class="back">
+                <p class="btn">アップロード</p>
+              </label>
             </td>
           </tr>
           @error('image_4')

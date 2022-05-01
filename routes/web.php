@@ -11,6 +11,8 @@
 |
 */
 
+use App\Http\Controllers\SellController;
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -30,5 +32,7 @@ Route::get('/home', 'HomeController@index')->name('home');
 Route::middleware('auth')
     ->group(function () {
         Route::get('/sell', 'SellController@showSellForm')->name('sell.show');
+        Route::post('/sell', 'SellController@sellProduct')->name('sell.sell');
         Route::post('/category', 'SellController@category')->name('sell.category');
+        Route::post('/image-upload', 'SellController@imageUpload')->name('sell.image_upload');
     });
