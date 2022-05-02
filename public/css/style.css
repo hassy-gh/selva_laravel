@@ -132,3 +132,10 @@ input[type="file"] {
 .member-register-complete {
     text-align: center;
 }
+
+/* products */
+.images img {
+    width: 200px;
+    height: 200px;
+    display: none;
+}

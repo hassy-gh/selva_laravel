@@ -32,7 +32,7 @@ class SellController extends Controller
 
     public function sellProduct(SellRequest $request)
     {
-        $member = Auth::member();
+        $member = Auth::user();
 
         $product = new Product();
         $product->member_id = $member->id;
@@ -53,23 +53,9 @@ class SellController extends Controller
     {
         $file = $request->file('image');
 
-        $tempPath = $this->makeTempPath();
-
         $filePath = Storage::disk('public')
-            ->putFile('item-images', new File($tempPath));
+            ->putFile('products', new File($file));
 
         return basename($filePath);
-    }
-
-    /**
-     * 一時的なファイルを生成してパスを返します。
-     *
-     * @return string ファイルパス
-     */
-    public function makeTempPath(): string
-    {
-        $tmp_fp = tmpfile();
-        $meta   = stream_get_meta_data($tmp_fp);
-        return $meta["uri"];
     }
 }

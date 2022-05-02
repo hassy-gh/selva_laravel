@@ -60,11 +60,12 @@
           </tr>
           @enderror
 
-          <tr class="images">
+          <tr class="images image_1">
             <th></th>
             <td>
               <p>写真1</p>
               <input type="file" name="image_1" id="image_1">
+              <img src="" alt="" class="show_image_1">
               <label for="image_1" class="back">
                 <p class="btn">アップロード</p>
               </label>
