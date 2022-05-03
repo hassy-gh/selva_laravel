@@ -39,7 +39,7 @@ class SellController extends Controller
         $product->product_category_id = $request->input('product_category_id');
         $product->product_subcategory_id = $request->input('product_subcategory_id');
         $product->name = $request->input('name');
-        $product->image_1 = $request->file('image_1');
+        $product->image_1 = $request->input('image_1');
         $product->image_2 = $request->file('image_2');
         $product->image_3 = $request->file('image_3');
         $product->image_4 = $request->file('image_4');

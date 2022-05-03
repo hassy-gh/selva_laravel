@@ -49821,33 +49821,38 @@ $('#parent').on('change', function () {
   });
 });
 $('#image_1').on('change', function () {
-  var formData = new FormData();
-  formData.append('image', $('#image_1')[0].files[0]);
-  console.log($('#image_1')[0].files[0]);
-  var reader = new FileReader();
+  var allowExtensions = '.(jpg|jpeg|png|gif)$';
 
-  reader.onload = function (event) {
-    $('.show_image_1').attr('src', event.target.result).show;
-  };
+  if ($('#image_1')[0].files[0].name.match(allowExtensions) && $('#image_1')[0].files[0].size < 1228800) {
+    var formData = new FormData();
+    formData.append('image', $('#image_1')[0].files[0]);
+    var reader = new FileReader();
 
-  reader.readAsDataURL($('#image_1')[0].files[0]);
-  $('.show_image_1').css('display', 'block');
-  $.ajax({
-    headers: {
-      'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-    },
-    url: '/image-upload',
-    type: 'POST',
-    data: formData,
-    dataType: 'text',
-    processData: false,
-    contentType: false
-  }).done(function (data) {
-    $('#image_1').attr('value', data);
-    console.log(data);
-  }).fail(function () {
-    console.log('失敗');
-  });
+    reader.onload = function (event) {
+      $('.show_image_1').attr('src', event.target.result).show;
+    };
+
+    reader.readAsDataURL($('#image_1')[0].files[0]);
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/image-upload',
+      type: 'POST',
+      data: formData,
+      dataType: 'text',
+      processData: false,
+      contentType: false
+    }).done(function (data) {
+      $('.image-1-text').attr('value', data);
+      console.log(data);
+    }).fail(function () {
+      console.log('失敗');
+    });
+  } else {
+    alert('拡張子がjpg、jpeg、png、gif以外のファイルはアップロードできません');
+    return;
+  }
 });
 
 /***/ }),

@@ -60,12 +60,17 @@
           </tr>
           @enderror
 
-          <tr class="images image_1">
+          <tr class="images image-1">
             <th></th>
             <td>
               <p>写真1</p>
-              <input type="file" name="image_1" id="image_1">
-              <img src="" alt="" class="show_image_1">
+              <input type="file" name="image_1_file" id="image_1" accept=".jpg,.jpeg,.png,.gif">
+              <input type="hidden" name="image_1" class="image-1-text">
+              @if (old('image_1'))
+              <img src="/storage/products/{{ old('image_1') }}" alt="" class="show_image_1">
+              @else
+              <img src="/images/product-image-default.png" alt="" class="show_image_1">
+              @endif
               <label for="image_1" class="back">
                 <p class="btn">アップロード</p>
               </label>
@@ -78,11 +83,17 @@
           </tr>
           @enderror
 
-          <tr class="images">
+          <tr class="images image-2">
             <th></th>
             <td>
               <p>写真2</p>
-              <input type="file" name="image_2" id="image_2">
+              <input type="file" name="image_2_file" id="image_2" accept=".jpg,.jpeg,.png,.gif">
+              <input type="hidden" name="image_2" class="image-2-text">
+              @if (old('image_2'))
+              <img src="/storage/products/{{ old('image_2') }}" alt="" class="show_image_2">
+              @else
+              <img src="/images/product-image-default.png" alt="" class="show_image_2">
+              @endif
               <label for="image_2" class="back">
                 <p class="btn">アップロード</p>
               </label>
@@ -95,11 +106,17 @@
           </tr>
           @enderror
 
-          <tr class="images">
+          <tr class="images image-3">
             <th></th>
             <td>
               <p>写真3</p>
-              <input type="file" name="image_3" id="image_3">
+              <input type="file" name="image_3_file" id="image_3" accept=".jpg,.jpeg,.png,.gif">
+              <input type="hidden" name="image_3" class="image-3-text">
+              @if (old('image_3'))
+              <img src="/storage/products/{{ old('image_3') }}" alt="" class="show_image_3">
+              @else
+              <img src="/images/product-image-default.png" alt="" class="show_image_3">
+              @endif
               <label for="image_3" class="back">
                 <p class="btn">アップロード</p>
               </label>
@@ -112,11 +129,17 @@
           </tr>
           @enderror
 
-          <tr class="images">
+          <tr class="images image-4">
             <th></th>
             <td>
               <p>写真4</p>
-              <input type="file" name="image_4" id="image_4">
+              <input type="file" name="image_4_file" id="image_4" accept=".jpg,.jpeg,.png,.gif">
+              <input type="hidden" name="image_4" class="image-4-text">
+              @if (old('image_4'))
+              <img src="/storage/products/{{ old('image_4') }}" alt="" class="show_image_4">
+              @else
+              <img src="/images/product-image-default.png" alt="" class="show_image_4">
+              @endif
               <label for="image_4" class="back">
                 <p class="btn">アップロード</p>
               </label>

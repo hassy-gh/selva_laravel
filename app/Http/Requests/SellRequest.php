@@ -36,10 +36,10 @@ class SellRequest extends FormRequest
                     21, 22, 23, 24, 25
                 ])
             ],
-            'image_1' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
-            'image_2' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
-            'image_3' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
-            'image_4' => ['nullable', 'image', 'mimes:jpg,jpeg,png,gif', 'max:10240'],
+            'image_1' => ['nullable', 'mimes:jpg,jpeg,png,gif'],
+            'image_2' => ['nullable', 'mimes:jpg,jpeg,png,gif'],
+            'image_3' => ['nullable', 'mimes:jpg,jpeg,png,gif'],
+            'image_4' => ['nullable', 'mimes:jpg,jpeg,png,gif'],
             'product_content' => ['required', 'string', 'max:500'],
         ];
     }
@@ -50,6 +50,7 @@ class SellRequest extends FormRequest
             'name' => '商品名',
             'product_category_id' => '商品カテゴリ大',
             'product_subcategory_id' => '商品カテゴリ小',
+            'image_1_file' => '商品写真１',
             'image_1' => '商品写真１',
             'image_2' => '商品写真２',
             'image_3' => '商品写真３',
