@@ -59,9 +59,10 @@ $('#parent').on('change', function() {
     });
 });
 
+// image_1
 $('#image_1').on('change', function() {
   const allowExtensions = '.(jpg|jpeg|png|gif)$';
-  if ($('#image_1')[0].files[0].name.match(allowExtensions) && $('#image_1')[0].files[0].size < 1228800) {
+  if ($('#image_1')[0].files[0].name.match(allowExtensions) && $('#image_1')[0].files[0].size < 10000000) {
 
     var formData = new FormData();
     formData.append('image', $('#image_1')[0].files[0]);
@@ -85,13 +86,123 @@ $('#image_1').on('change', function() {
     })
     .done(function(data) {
       $('.image-1-text').attr('value', data);
-      console.log(data);
     })
     .fail(function() {
       console.log('失敗');
     });
   } else {
-    alert('拡張子がjpg、jpeg、png、gif以外のファイルはアップロードできません');
+    alert('拡張子がjpg、jpeg、png、gif以外または10MB以上のファイルはアップロードできません');
+    return;
+  }
+});
+
+// image_2
+$('#image_2').on('change', function() {
+  const allowExtensions = '.(jpg|jpeg|png|gif)$';
+  if ($('#image_2')[0].files[0].name.match(allowExtensions) && $('#image_2')[0].files[0].size < 10000000) {
+
+    var formData = new FormData();
+    formData.append('image', $('#image_2')[0].files[0]);
+
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      $('.show_image_2').attr('src', event.target.result).show;
+    }
+    reader.readAsDataURL($('#image_2')[0].files[0]);
+
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/image-upload',
+      type: 'POST',
+      data: formData,
+      dataType: 'text',
+      processData: false,
+      contentType: false,
+    })
+    .done(function(data) {
+      $('.image-2-text').attr('value', data);
+    })
+    .fail(function() {
+      console.log('失敗');
+    });
+  } else {
+    alert('拡張子がjpg、jpeg、png、gif以外または10MB以上のファイルはアップロードできません');
+    return;
+  }
+});
+
+// image_3
+$('#image_3').on('change', function() {
+  const allowExtensions = '.(jpg|jpeg|png|gif)$';
+  if ($('#image_3')[0].files[0].name.match(allowExtensions) && $('#image_3')[0].files[0].size < 10000000) {
+
+    var formData = new FormData();
+    formData.append('image', $('#image_3')[0].files[0]);
+
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      $('.show_image_3').attr('src', event.target.result).show;
+    }
+    reader.readAsDataURL($('#image_3')[0].files[0]);
+
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/image-upload',
+      type: 'POST',
+      data: formData,
+      dataType: 'text',
+      processData: false,
+      contentType: false,
+    })
+    .done(function(data) {
+      $('.image-3-text').attr('value', data);
+    })
+    .fail(function() {
+      console.log('失敗');
+    });
+  } else {
+    alert('拡張子がjpg、jpeg、png、gif以外または10MB以上のファイルはアップロードできません');
+    return;
+  }
+});
+
+// image_4
+$('#image_4').on('change', function() {
+  const allowExtensions = '.(jpg|jpeg|png|gif)$';
+  if ($('#image_4')[0].files[0].name.match(allowExtensions) && $('#image_4')[0].files[0].size < 10000000) {
+
+    var formData = new FormData();
+    formData.append('image', $('#image_4')[0].files[0]);
+
+    var reader = new FileReader();
+    reader.onload = function(event) {
+      $('.show_image_4').attr('src', event.target.result).show;
+    }
+    reader.readAsDataURL($('#image_4')[0].files[0]);
+
+    $.ajax({
+      headers: {
+        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+      },
+      url: '/image-upload',
+      type: 'POST',
+      data: formData,
+      dataType: 'text',
+      processData: false,
+      contentType: false,
+    })
+    .done(function(data) {
+      $('.image-4-text').attr('value', data);
+    })
+    .fail(function() {
+      console.log('失敗');
+    });
+  } else {
+    alert('拡張子がjpg、jpeg、png、gif以外または10MB以上のファイルはアップロードできません');
     return;
   }
 });

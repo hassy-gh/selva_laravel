@@ -33,6 +33,8 @@ Route::middleware('auth')
     ->group(function () {
         Route::get('/sell', 'SellController@showSellForm')->name('sell.show');
         Route::post('/sell', 'SellController@sellProduct')->name('sell.sell');
+        Route::get('/sell/confirm', 'SellController@showConfirmForm')->name('sell.show_confirm');
+        Route::post('/sell/confirm', 'SellController@confirm')->name('sell.confirm');
         Route::post('/category', 'SellController@category')->name('sell.category');
         Route::post('/image-upload', 'SellController@imageUpload')->name('sell.image_upload');
     });

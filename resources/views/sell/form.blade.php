@@ -61,11 +61,11 @@
           @enderror
 
           <tr class="images image-1">
-            <th></th>
+            <th>商品写真</th>
             <td>
               <p>写真1</p>
               <input type="file" name="image_1_file" id="image_1" accept=".jpg,.jpeg,.png,.gif">
-              <input type="hidden" name="image_1" class="image-1-text">
+              <input type="hidden" name="image_1" class="image-1-text" value="{{ old('image_1') }}">
               @if (old('image_1'))
               <img src="/storage/products/{{ old('image_1') }}" alt="" class="show_image_1">
               @else
@@ -88,7 +88,7 @@
             <td>
               <p>写真2</p>
               <input type="file" name="image_2_file" id="image_2" accept=".jpg,.jpeg,.png,.gif">
-              <input type="hidden" name="image_2" class="image-2-text">
+              <input type="hidden" name="image_2" class="image-2-text" value="{{ old('image_2') }}">
               @if (old('image_2'))
               <img src="/storage/products/{{ old('image_2') }}" alt="" class="show_image_2">
               @else
@@ -111,7 +111,7 @@
             <td>
               <p>写真3</p>
               <input type="file" name="image_3_file" id="image_3" accept=".jpg,.jpeg,.png,.gif">
-              <input type="hidden" name="image_3" class="image-3-text">
+              <input type="hidden" name="image_3" class="image-3-text" value="{{ old('image_3') }}">
               @if (old('image_3'))
               <img src="/storage/products/{{ old('image_3') }}" alt="" class="show_image_3">
               @else
@@ -134,7 +134,7 @@
             <td>
               <p>写真4</p>
               <input type="file" name="image_4_file" id="image_4" accept=".jpg,.jpeg,.png,.gif">
-              <input type="hidden" name="image_4" class="image-4-text">
+              <input type="hidden" name="image_4" class="image-4-text" value="{{ old('image_4') }}">
               @if (old('image_4'))
               <img src="/storage/products/{{ old('image_4') }}" alt="" class="show_image_4">
               @else
@@ -154,7 +154,9 @@
 
           <tr class="product-content">
             <th>商品説明</th>
-            <td><textarea name="product_content" cols="30" rows="5"></textarea></td>
+            <td>
+              <textarea name="product_content" cols="30" rows="5">{{ old('product_content') }}</textarea>
+            </td>
           </tr>
           @error('product_content')
           <tr class="error-messages">
