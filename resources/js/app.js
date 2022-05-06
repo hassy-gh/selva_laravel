@@ -49,6 +49,7 @@ $('#parent').on('change', function() {
     .done(function(data) {
       // 子カテゴリのoptionを一旦削除
       $('#child option').remove();
+      $('#child').append($('<option>').text('選択してください').attr('value', ''));
       // DBから受け取ったデータを子カテゴリのoptionにセット
       $.each(data, function(key, value) {
         $('#child').append($('<option>').text(value.name).attr('value', value.id));

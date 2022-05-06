@@ -92,7 +92,7 @@ class SellController extends Controller
 
         $request->session()->forget('form_input');
 
-        return redirect('/');
+        return redirect('/products');
     }
 
 

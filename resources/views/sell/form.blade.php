@@ -169,9 +169,15 @@
         <div class="submit">
           <button class="btn" type="submit">確認画面へ</button>
         </div>
+        @if (url()->previous() === env('APP_URL'))
         <div class="back">
           <a href="/" class="btn">トップに戻る</a>
         </div>
+        @else
+        <div class="back">
+          <a href="/products" class="btn">商品一覧に戻る</a>
+        </div>
+        @endif
       </form>
     </div>
   </div>

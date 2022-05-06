@@ -1,4 +1,7 @@
 @charset "UTF-8";
+main {
+    padding-top: 60px !important;
+}
 
 body {
     background-color: #fef2cb;
@@ -46,6 +49,7 @@ header {
     height: 60px;
     width: 100%;
     background-color: #fbe4d5;
+    z-index: 10;
 }
 
 .header-left {
@@ -117,6 +121,19 @@ input[type="file"] {
     display: none;
 }
 
+.search-form {
+    background-color: #fff;
+    border: 1px solid #000;
+    padding: 20px;
+    margin-top: 30px;
+}
+
+.search-form .free-word input {
+    width: 100%;
+    border: 1px solid #000;
+    border-radius: 3px;
+}
+
 /* error-message */
 .error-messages {
     color: red;
@@ -138,4 +155,43 @@ input[type="file"] {
     width: 200px;
     height: 200px;
     display: block;
+}
+
+.product {
+    padding: 20px 0;
+    border-bottom: 1px solid #000;
+    height: 200px;
+}
+
+.product-image {
+    float: left;
+    width: 30%;
+    height: 100%;
+    padding: 10px;
+}
+
+.product-image img {
+    width: 100%;
+    height: 100%;
+}
+
+.product-caption {
+    float: right;
+    width: 70%;
+    padding: 10px;
+}
+
+.product-caption .category {
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.product-caption p {
+    margin-top: 20px;
+}
+
+.pager {
+    display: flex;
+    justify-content: right;
+    margin-top: 20px;
 }
