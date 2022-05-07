@@ -40,3 +40,4 @@ Route::middleware('auth')
 
 Route::post('/category', 'SellController@category')->name('sell.category');
 Route::get('/products', 'ProductsController@showProducts')->name('products.index');
+Route::get('/products/{product}', 'ProductsController@showProductDetail')->name('products.detail');

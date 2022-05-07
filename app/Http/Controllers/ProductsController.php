@@ -59,4 +59,15 @@ class ProductsController extends Controller
             $value
         );
     }
+
+    public function showProductDetail(Product $product)
+    {
+        $config_categories = config('master.product_category');
+        $config_subcategories = config('master.product_subcategory');
+
+        return view('products.product_detail')
+            ->with('product', $product)
+            ->with('config_categories', $config_categories)
+            ->with('config_subcategories', $config_subcategories);
+    }
 }

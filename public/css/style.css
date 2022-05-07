@@ -186,7 +186,8 @@ input[type="file"] {
     border: 1px solid #000;
 }
 
-.product-caption p {
+.product-caption a {
+    display: block;
     margin-top: 20px;
 }
 
@@ -194,4 +195,30 @@ input[type="file"] {
     display: flex;
     justify-content: right;
     margin-top: 20px;
+}
+
+/* product_detail */
+.product-detail {
+    margin-top: 30px;
+}
+
+.product-detail .name {
+    display: inline-block;
+    margin-right: 15px;
+}
+
+.product-detail .images {
+    list-style: none;
+    display: flex;
+    margin: 30px 0;
+}
+
+.product-detail .images li {
+    width: 23%;
+    margin-right: 1%;
+}
+
+.product-detail .images img {
+    width: 100%;
+    height: 150px;
 }
