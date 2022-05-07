@@ -55,4 +55,9 @@ class Member extends Authenticatable
     {
         $this->notify(new PasswordResetNotification($token));
     }
+
+    public function reviews()
+    {
+        return $this->hasMany(Review::class);
+    }
 }

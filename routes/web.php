@@ -31,13 +31,24 @@ Route::get('/home', 'HomeController@index')->name('home');
 
 Route::middleware('auth')
     ->group(function () {
+        // sell
         Route::get('/sell', 'SellController@showSellForm')->name('sell.show');
         Route::post('/sell', 'SellController@sellProduct')->name('sell.sell');
         Route::get('/sell/confirm', 'SellController@showConfirmForm')->name('sell.show_confirm');
         Route::post('/sell/confirm', 'SellController@confirm')->name('sell.confirm');
         Route::post('/image-upload', 'SellController@imageUpload')->name('sell.image_upload');
+        // review
+        Route::get('/products/{product}/review', 'ReviewController@showReviewForm')->name('review.form');
+        Route::post('/products/{product}/review', 'ReviewController@reviewPost')->name('review.post');
+        Route::get('/products/{product}/review/confirm', 'ReviewController@showConfirmForm')->name('review.confirm');
+        Route::post('/products/{product}/review/confirm', 'ReviewController@confirm')->name('review.register');
+        Route::get('/products/{product}/review/complete', 'ReviewController@complete')->name('review.complete');
     });
 
+// sell
 Route::post('/category', 'SellController@category')->name('sell.category');
 Route::get('/products', 'ProductsController@showProducts')->name('products.index');
 Route::get('/products/{product}', 'ProductsController@showProductDetail')->name('products.detail');
+
+// review
+Route::get('/products/{product}/reviews', 'ReviewController@showReviews')->name('review.reviews');

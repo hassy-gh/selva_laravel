@@ -47,11 +47,27 @@
             @endif
           </li>
         </ul>
-        <p>■商品説明</p>
-        <p>
-          {!! nl2br($product->product_content) !!}
-        </p>
+        <div class="description">
+          <p>■商品説明</p>
+          <p>
+            {!! nl2br($product->product_content) !!}
+          </p>
+        </div>
+        <div>
+          <p>■商品レビュー</p>
+          <p>
+            総合評価
+          </p>
+          <p><a href="{{ route('review.reviews', $product->id) }}">>>レビューを見る</a></p>
+        </div>
       </div>
+      @auth
+      <div class="submit" style="text-align: right;">
+        <a href="{{ route('review.form', [$product->id]) }}" class="btn">
+          この商品についてのレビューを登録
+        </a>
+      </div>
+      @endauth
       <div class="back" style="text-align: right;">
         @if (strpos(url()->previous(), '/products?'))
         <a href="{{ url()->previous() }}" class="btn">商品一覧に戻る</a>
