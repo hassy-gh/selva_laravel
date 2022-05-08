@@ -19,7 +19,14 @@
         </div>
         <div class="product-caption">
           <p class="name">{{ $product->name }}</p>
-          <p>総合評価</p>
+          <p>
+            総合評価
+            @if ($average)
+            {{ $evaluations[ceil($average)] }} {{ ceil($average) }}
+            @else
+            レビューがありません
+            @endif
+          </p>
         </div>
       </div>
       <form action="{{ route('review.post', $product->id) }}" method="POST" class="review-form">

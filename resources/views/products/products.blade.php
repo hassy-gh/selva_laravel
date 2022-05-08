@@ -62,6 +62,13 @@
               {{ $config_categories[$product->product_category_id] }}>{{ $config_subcategories[$product->product_subcategory_id] }}
             </span>
             <a href="{{ route('products.detail', [$product->id]) }}">{{ $product->name }}</a>
+            <p>
+              @if ($averages[$product->id])
+              {{ $evaluations[ceil($averages[$product->id])] }} {{ ceil($averages[$product->id]) }}
+              @else
+              レビューがありません
+              @endif
+            </p>
           </div>
           <div class="submit" style="text-align: right;">
             <a href="{{ route('products.detail', [$product->id]) }}" class="btn">詳細</a>

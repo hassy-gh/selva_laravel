@@ -21,8 +21,15 @@ class ReviewController extends Controller
 
     public function showReviewForm(Product $product)
     {
+        $average = $product->reviews()
+            ->pluck('evaluation')
+            ->avg();
+        $config_evaluations = config('master.evaluations');
+
         return view('review.form')
-            ->with('product', $product);
+            ->with('product', $product)
+            ->with('average', $average)
+            ->with('evaluations', $config_evaluations);
     }
 
     public function reviewPost(ReviewRequest $request, Product $product)
@@ -42,9 +49,16 @@ class ReviewController extends Controller
             return redirect()->action($this->form_show, $product);
         }
 
+        $average = $product->reviews()
+            ->pluck('evaluation')
+            ->avg();
+        $config_evaluations = config('master.evaluations');
+
         return view('review.confirm', [
             'input' => $input,
             'product' => $product,
+            'average' => $average,
+            'evaluations' => $config_evaluations,
         ]);
     }
 
@@ -83,17 +97,15 @@ class ReviewController extends Controller
     public function showReviews(Product $product)
     {
         $reviews = $product->reviews()->orderBy('id', 'DESC')->paginate(5);
-        $average = Review::select('product_id')
-            ->selectRaw('AVG(evaluation) as average')
-            ->where('product_id', $product->id)
-            ->groupBy('product_id')
-            ->get();
-        $evaluations = config('master.evaluations');
+        $average = $product->reviews()
+            ->pluck('evaluation')
+            ->avg();
+        $config_evaluations = config('master.evaluations');
 
         return view('review.reviews')
             ->with('reviews', $reviews)
             ->with('product', $product)
             ->with('average', $average)
-            ->with('evaluations', $evaluations);
+            ->with('evaluations', $config_evaluations);
     }
 }

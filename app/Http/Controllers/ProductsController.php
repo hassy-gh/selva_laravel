@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Product;
 use App\ProductCategory;
 use App\ProductSubcategory;
+use App\Review;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -42,13 +43,23 @@ class ProductsController extends Controller
         $config_categories = config('master.product_category');
         $config_subcategories = config('master.product_subcategory');
 
+        $averages = [];
+        foreach ($products as $product) {
+            $averages[$product->id] = $product->reviews()
+                ->pluck('evaluation')
+                ->avg();
+        }
+        $config_evaluations = config('master.evaluations');
+
         return view('products.products')
             ->with('products', $products)
             ->with('defaults', $defaults)
             ->with('categories', $categories)
             ->with('subcategories', $subcategories)
             ->with('config_categories', $config_categories)
-            ->with('config_subcategories', $config_subcategories);
+            ->with('config_subcategories', $config_subcategories)
+            ->with('averages', $averages)
+            ->with('evaluations', $config_evaluations);
     }
 
     private function escape(string $value)
@@ -65,9 +76,16 @@ class ProductsController extends Controller
         $config_categories = config('master.product_category');
         $config_subcategories = config('master.product_subcategory');
 
+        $average = $product->reviews()
+            ->pluck('evaluation')
+            ->avg();
+        $config_evaluations = config('master.evaluations');
+
         return view('products.product_detail')
             ->with('product', $product)
             ->with('config_categories', $config_categories)
-            ->with('config_subcategories', $config_subcategories);
+            ->with('config_subcategories', $config_subcategories)
+            ->with('average', $average)
+            ->with('evaluations', $config_evaluations);
     }
 }

@@ -57,6 +57,11 @@
           <p>■商品レビュー</p>
           <p>
             総合評価
+            @if ($average)
+            {{ $evaluations[ceil($average)] }} {{ ceil($average) }}
+            @else
+            レビューがありません
+            @endif
           </p>
           <p><a href="{{ route('review.reviews', $product->id) }}">>>レビューを見る</a></p>
         </div>
