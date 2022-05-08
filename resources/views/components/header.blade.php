@@ -12,6 +12,7 @@
   <div class="header-right">
     <a href="{{ route('products.index') }}" class="btn">商品一覧</a>
     <a href="{{ route('sell.show') }}" class="btn">新規商品登録</a>
+    <a href="{{ route('mypage.profile') }}" class="btn">マイページ</a>
     <form id="logout-form" action="{{ route('logout') }}" method="POST">
       @csrf
       <button class="btn" type="submit">ログアウト</button>

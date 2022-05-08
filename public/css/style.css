@@ -259,3 +259,19 @@ input[type="file"] {
 .reviews .review td {
     width: 70%;
 }
+
+/* mypage */
+.profile {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.profile th {
+    width: 30%;
+    padding-bottom: 30px;
+}
+
+.profile td {
+    width: 70%;
+    padding-bottom: 30px;
+}

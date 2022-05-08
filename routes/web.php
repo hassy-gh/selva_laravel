@@ -43,6 +43,8 @@ Route::middleware('auth')
         Route::get('/products/{product}/review/confirm', 'ReviewController@showConfirmForm')->name('review.confirm');
         Route::post('/products/{product}/review/confirm', 'ReviewController@confirm')->name('review.register');
         Route::get('/products/{product}/review/complete', 'ReviewController@complete')->name('review.complete');
+        // mypage
+        Route::get('/mypage', 'ProfileController@showProfile')->name('mypage.profile');
     });
 
 // sell
