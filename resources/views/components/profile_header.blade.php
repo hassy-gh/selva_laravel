@@ -1,6 +1,6 @@
 <header>
   <div class="header-left">
-    <h3>マイページ</h3>
+    <h3>{{ $title }}</h3>
   </div>
   <div class="header-right">
     <a href="/" class="btn">トップに戻る</a>

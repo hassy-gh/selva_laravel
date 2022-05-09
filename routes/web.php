@@ -15,7 +15,7 @@ use App\Http\Controllers\SellController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->name('top');
 
 Auth::routes();
 
@@ -45,6 +45,8 @@ Route::middleware('auth')
         Route::get('/products/{product}/review/complete', 'ReviewController@complete')->name('review.complete');
         // mypage
         Route::get('/mypage', 'ProfileController@showProfile')->name('mypage.profile');
+        Route::get('/withdrawal_confirm', 'ProfileController@showWithdrawalConfirm')->name('mypage.withdrawal_confirm');
+        Route::post('/withdrawal', 'ProfileController@withdrawal')->name('mypage.withdrawal');
     });
 
 // sell

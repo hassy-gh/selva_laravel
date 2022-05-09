@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-@include('components.profile_header')
+@include('components.profile_header', ['title' => 'マイページ'])
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -35,6 +35,9 @@
           <td>{{ $member->email }}</td>
         </tr>
       </table>
+      <div class="submit">
+        <a href="{{ route('mypage.withdrawal_confirm') }}" class="btn">退会</a>
+      </div>
     </div>
   </div>
 </div>

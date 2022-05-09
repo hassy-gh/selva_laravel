@@ -27,6 +27,8 @@ class Member extends Authenticatable
         'email',
     ];
 
+    protected $dates = ['deleted_at'];
+
     /**
      * The attributes that should be hidden for arrays.
      *
