@@ -45,8 +45,18 @@ Route::middleware('auth')
         Route::get('/products/{product}/review/complete', 'ReviewController@complete')->name('review.complete');
         // mypage
         Route::get('/mypage', 'ProfileController@showProfile')->name('mypage.profile');
+        Route::get('/mypage/edit', 'ProfileController@showProfileEditForm')->name('mypage.show_profile_edit');
+        Route::post('/mypage/edit', 'ProfileController@profileEdit')->name('mypage.profile_edit');
+        Route::get('/mypage/edit/confirm', 'ProfileController@showConfirmForm')->name('mypage.profile_edit_confirm');
+        Route::post('/mypage/edit/confirm', 'ProfileController@profileUpdate')->name('mypage.profile_update');
+        Route::get('/mypage/password-edit', 'PasswordUpdateController@showPasswordEditForm')->name('mypage.show_password_edit');
+        Route::post('/mypage/password-edit', 'PasswordUpdateController@passwordUpdate')->name('mypage.password_update');
         Route::get('/withdrawal_confirm', 'ProfileController@showWithdrawalConfirm')->name('mypage.withdrawal_confirm');
         Route::post('/withdrawal', 'ProfileController@withdrawal')->name('mypage.withdrawal');
+        Route::get('/mypage/email-edit', 'EmailUpdateController@showEmailEditForm')->name('mypage.show_email_edit');
+        Route::post('/mypage/email-edit', 'EmailUpdateController@emailEdit')->name('mypage.email_edit');
+        Route::get('/mypage/email-edit/auth', 'EmailUpdateController@showAuthForm')->name('mypage.show_auth');
+        Route::post('/mypage/email-edit/auth', 'EmailUpdateController@emailUpdate')->name('mypage.email_update');
     });
 
 // sell

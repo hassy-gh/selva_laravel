@@ -25,17 +25,50 @@
           <td>{{ $gender[$member->gender] }}</td>
         </tr>
 
+        <tr>
+          <th></th>
+          <td>
+            <div class="submit" style="text-align: left;">
+              <a href="{{ route('mypage.show_profile_edit') }}" class="btn">
+                会員情報変更
+              </a>
+            </div>
+          </td>
+        </tr>
+
         <tr class="password">
           <th>パスワード</th>
           <td>セキュリティのため非表示</td>
+        </tr>
+
+        <tr>
+          <th></th>
+          <td>
+            <div class="submit" style="text-align: left;">
+              <a href="{{ route('mypage.show_password_edit') }}" class="btn">
+                パスワード変更
+              </a>
+            </div>
+          </td>
         </tr>
 
         <tr class="email">
           <th>メールアドレス</th>
           <td>{{ $member->email }}</td>
         </tr>
+
+        <tr>
+          <th></th>
+          <td>
+            <div class="submit" style="text-align: left;">
+              <a href="{{ route('mypage.show_email_edit') }}" class="btn">
+                メールアドレス変更
+              </a>
+            </div>
+          </td>
+        </tr>
       </table>
-      <div class="submit">
+      <div class="back">
         <a href="{{ route('mypage.withdrawal_confirm') }}" class="btn">退会</a>
       </div>
     </div>

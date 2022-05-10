@@ -71,7 +71,7 @@ class RegisterController extends Controller
             'gender' => ['required', 'integer', 'in:1,2'],
             'password' => ['required', 'string', 'alpha_num', 'between:8,20', 'confirmed'],
             'password_confirmation' => ['required', 'string', 'alpha_num', 'between:8,20'],
-            'email' => ['required', 'string', 'email', 'max:200', 'unique:members'],
+            'email' => ['required', 'string', "regex:/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/", 'email', 'max:200', 'unique:members'],
         ]);
     }
 
