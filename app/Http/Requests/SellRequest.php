@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Contracts\Validation\Validator;
 use Illuminate\Validation\Rule;
 
 class SellRequest extends FormRequest
@@ -30,11 +31,6 @@ class SellRequest extends FormRequest
             'product_subcategory_id' => [
                 'required',
                 'integer',
-                Rule::in([
-                    1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
-                    11, 12, 13, 14, 15, 16, 17, 18, 19, 20,
-                    21, 22, 23, 24, 25
-                ])
             ],
             'image_1' => ['nullable'],
             'image_2' => ['nullable'],
@@ -42,6 +38,29 @@ class SellRequest extends FormRequest
             'image_4' => ['nullable'],
             'product_content' => ['required', 'string', 'max:500'],
         ];
+    }
+
+    public function withValidator(Validator $validator)
+    {
+        $validator->sometimes('product_subcategory_id', Rule::in([1, 2, 3, 4, 5]), function ($input) {
+            return $input->product_category_id == 1;
+        });
+
+        $validator->sometimes('product_subcategory_id', Rule::in([6, 7, 8, 9, 10]), function ($input) {
+            return $input->product_category_id == 2;
+        });
+
+        $validator->sometimes('product_subcategory_id', Rule::in([11, 12, 13, 14, 15]), function ($input) {
+            return $input->product_category_id == 3;
+        });
+
+        $validator->sometimes('product_subcategory_id', Rule::in([16, 17, 18, 19, 20]), function ($input) {
+            return $input->product_category_id == 4;
+        });
+
+        $validator->sometimes('product_subcategory_id', Rule::in([21, 22, 23, 24, 25]), function ($input) {
+            return $input->product_category_id == 5;
+        });
     }
 
     public function attributes()

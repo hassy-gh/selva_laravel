@@ -63,7 +63,7 @@ $('#parent').on('change', function() {
 // image_1
 $('#image_1').on('change', function() {
   const allowExtensions = '.(jpg|jpeg|png|gif)$';
-  if ($('#image_1')[0].files[0].name.match(allowExtensions) && $('#image_1')[0].files[0].size < 10000000) {
+  if ($('#image_1')[0].files[0].name.match(allowExtensions) && $('#image_1')[0].files[0].size < 10485760) {
 
     var formData = new FormData();
     formData.append('image', $('#image_1')[0].files[0]);
@@ -100,7 +100,7 @@ $('#image_1').on('change', function() {
 // image_2
 $('#image_2').on('change', function() {
   const allowExtensions = '.(jpg|jpeg|png|gif)$';
-  if ($('#image_2')[0].files[0].name.match(allowExtensions) && $('#image_2')[0].files[0].size < 10000000) {
+  if ($('#image_2')[0].files[0].name.match(allowExtensions) && $('#image_2')[0].files[0].size < 10485760) {
 
     var formData = new FormData();
     formData.append('image', $('#image_2')[0].files[0]);
@@ -137,7 +137,7 @@ $('#image_2').on('change', function() {
 // image_3
 $('#image_3').on('change', function() {
   const allowExtensions = '.(jpg|jpeg|png|gif)$';
-  if ($('#image_3')[0].files[0].name.match(allowExtensions) && $('#image_3')[0].files[0].size < 10000000) {
+  if ($('#image_3')[0].files[0].name.match(allowExtensions) && $('#image_3')[0].files[0].size < 10485760) {
 
     var formData = new FormData();
     formData.append('image', $('#image_3')[0].files[0]);
@@ -174,7 +174,7 @@ $('#image_3').on('change', function() {
 // image_4
 $('#image_4').on('change', function() {
   const allowExtensions = '.(jpg|jpeg|png|gif)$';
-  if ($('#image_4')[0].files[0].name.match(allowExtensions) && $('#image_4')[0].files[0].size < 10000000) {
+  if ($('#image_4')[0].files[0].name.match(allowExtensions) && $('#image_4')[0].files[0].size < 10485760) {
 
     var formData = new FormData();
     formData.append('image', $('#image_4')[0].files[0]);

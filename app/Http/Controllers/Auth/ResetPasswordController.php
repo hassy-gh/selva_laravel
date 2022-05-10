@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Auth;
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\ResetsPasswords;
+use Illuminate\Http\Request;
 
 class ResetPasswordController extends Controller
 {
@@ -40,5 +41,42 @@ class ResetPasswordController extends Controller
             'password' => 'required|between:8,20|alpha_num|confirmed',
             'password_confirmation' => 'required|between:8,20|alpha_num',
         ];
+    }
+
+    /**
+     * Reset the given user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $member
+     * @param  string  $password
+     * @return void
+     */
+    protected function resetPassword($member, $password)
+    {
+        $this->setUserPassword($member, $password);
+        $member->save();
+    }
+
+    /**
+     * Set the user's password.
+     *
+     * @param  \Illuminate\Contracts\Auth\CanResetPassword  $member
+     * @param  string  $password
+     * @return void
+     */
+    protected function setUserPassword($member, $password)
+    {
+        $member->password = Hash::make($password);
+    }
+
+    /**
+     * Get the response for a successful password reset.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  string  $response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Http\JsonResponse
+     */
+    protected function sendResetResponse(Request $request, $response)
+    {
+        return redirect($this->redirectPath());
     }
 }
