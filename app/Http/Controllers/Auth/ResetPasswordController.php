@@ -68,8 +68,8 @@ class ResetPasswordController extends Controller
     {
         return [
             'token' => 'required',
-            'password' => 'required|between:8,20|alpha_num|confirmed',
-            'password_confirmation' => 'required|between:8,20|alpha_num',
+            'password' => 'required|alpha_num|between:8,20|confirmed',
+            'password_confirmation' => 'required|alpha_num|between:8,20',
         ];
     }
 
@@ -84,6 +84,8 @@ class ResetPasswordController extends Controller
     {
         $this->setUserPassword($member, $password);
         $member->save();
+
+        $this->guard()->login($member);
     }
 
     /**
