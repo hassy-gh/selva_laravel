@@ -275,3 +275,36 @@ input[type="file"] {
     width: 70%;
     padding-bottom: 30px;
 }
+
+/* mypage_reviews */
+.mypage-reviews .review {
+    display: flex;
+    border-bottom: 1px solid #000;
+    padding: 15px 0;
+}
+
+.mypage-reviews .product-image {
+    width: 30%;
+}
+
+.mypage-reviews .review-content {
+    width: 70%;
+    padding-left: 15px;
+}
+
+.review-content .category {
+    background-color: #fff;
+    border: 1px solid #000;
+}
+
+.review-content h3 {
+    color: #3490dc;
+}
+
+.review-content .buttons {
+    display: flex;
+}
+
+.review-content .buttons .submit {
+    margin-right: 10px;
+}

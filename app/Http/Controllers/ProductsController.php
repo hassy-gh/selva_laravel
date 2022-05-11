@@ -77,6 +77,7 @@ class ProductsController extends Controller
         $config_subcategories = config('master.product_subcategory');
 
         $average = $product->reviews()
+            ->whereNull('deleted_at')
             ->pluck('evaluation')
             ->avg();
         $config_evaluations = config('master.evaluations');

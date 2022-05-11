@@ -97,4 +97,19 @@ class ProfileController extends Controller
         Auth::logout();
         return redirect()->route('top');
     }
+
+    public function showReviews()
+    {
+        $member = Auth::user();
+        $reviews = $member->reviews()->whereNull('deleted_at')->orderBy('id', 'DESC')->paginate(5);
+        $categories = config('master.product_category');
+        $subcategories = config('master.product_subcategory');
+        $evaluations = config('master.evaluations');
+
+        return view('mypage.reviews')
+            ->with('reviews', $reviews)
+            ->with('categories', $categories)
+            ->with('subcategories', $subcategories)
+            ->with('evaluations', $evaluations);
+    }
 }

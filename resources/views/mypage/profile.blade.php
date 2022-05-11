@@ -67,6 +67,17 @@
             </div>
           </td>
         </tr>
+
+        <tr>
+          <th></th>
+          <td>
+            <div class="submit" style="text-align: left;">
+              <a href="{{ route('mypage.reviews') }}" class="btn">
+                商品レビュー管理
+              </a>
+            </div>
+          </td>
+        </tr>
       </table>
       <div class="back">
         <a href="{{ route('mypage.withdrawal_confirm') }}" class="btn">退会</a>
