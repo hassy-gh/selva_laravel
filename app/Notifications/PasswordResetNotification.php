@@ -50,7 +50,10 @@ class PasswordResetNotification extends Notification
             ->view(
                 'mail.html.passwordreset',
                 [
-                    'reset_url' => url('password/reset', $this->token),
+                    'reset_url' => route('password.reset', [
+                        'token' => $this->token,
+                        'email' => $member->email,
+                    ]),
                     'title' => $this->title,
                     'to' => $member->email,
                 ]
