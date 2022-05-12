@@ -84,8 +84,12 @@ Route::group(['prefix' => 'admin'], function () {
 });
 
 Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function () {
+    // top
     Route::get('/', function () {
         return view('admin.welcome');
     })->name('admin.top');
+    // logout
     Route::post('/logout', 'Admin\LoginController@logout')->name('admin.logout');
+    // members
+    Route::get('/members', 'Admin\MembersController@showMembers')->name('admin.members.members');
 });

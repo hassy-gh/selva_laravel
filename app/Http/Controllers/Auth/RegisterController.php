@@ -10,6 +10,7 @@ use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\Hankaku;
 
 class RegisterController extends Controller
 {
@@ -69,8 +70,8 @@ class RegisterController extends Controller
             'name_mei' => ['required', 'string', 'max:20'],
             'nickname' => ['required', 'string', 'max:10'],
             'gender' => ['required', 'integer', 'in:1,2'],
-            'password' => ['required', 'string', 'alpha_num', 'between:8,20', 'confirmed'],
-            'password_confirmation' => ['required', 'string', 'alpha_num', 'between:8,20'],
+            'password' => ['required', 'string', new Hankaku(), 'between:8,20', 'confirmed'],
+            'password_confirmation' => ['required', 'string', new Hankaku(), 'between:8,20'],
             'email' => ['required', 'string', "regex:/^[a-zA-Z0-9.!#$%&'*+\/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/", 'email', 'max:200', 'unique:members'],
         ]);
     }

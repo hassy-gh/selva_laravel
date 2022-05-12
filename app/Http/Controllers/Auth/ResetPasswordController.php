@@ -8,6 +8,7 @@ use Illuminate\Foundation\Auth\ResetsPasswords;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Hash;
+use App\Rules\Hankaku;
 
 class ResetPasswordController extends Controller
 {
@@ -67,9 +68,9 @@ class ResetPasswordController extends Controller
     protected function rules()
     {
         return [
-            'token' => 'required',
-            'password' => 'required|alpha_num|between:8,20|confirmed',
-            'password_confirmation' => 'required|alpha_num|between:8,20',
+            'token' => ['required'],
+            'password' => ['required', new Hankaku(), 'between:8,20', 'confirmed'],
+            'password_confirmation' => ['required', new Hankaku(), 'between:8,20'],
         ];
     }
 

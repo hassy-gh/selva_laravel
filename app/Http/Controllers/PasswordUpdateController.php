@@ -6,14 +6,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use App\Rules\Hankaku;
 
 class PasswordUpdateController extends Controller
 {
     protected function validator(array $data)
     {
         return Validator::make($data, [
-            'password' => 'required|string|alpha_num|between:8,20|confirmed',
-            'password_confirmation' => 'required|string|alpha_num|between:8,20',
+            'password' => ['required', new Hankaku(), 'between:8,20', 'confirmed'],
+            'password_confirmation' => ['required', new Hankaku(), 'between:8,20'],
         ]);
     }
 
