@@ -14,7 +14,7 @@ return [
     */
 
     'defaults' => [
-        'guard' => 'web',
+        'guard' => 'member',
         'passwords' => 'members',
     ],
 
@@ -40,11 +40,18 @@ return [
             'driver' => 'session',
             'provider' => 'members',
         ],
-
         'api' => [
             'driver' => 'token',
             'provider' => 'members',
             'hash' => false,
+        ],
+        'member' => [
+            'driver' => 'session',
+            'provider' => 'members',
+        ],
+        'administer' => [
+            'driver' => 'session',
+            'provider' => 'administers',
         ],
     ],
 
@@ -69,6 +76,10 @@ return [
         'members' => [
             'driver' => 'eloquent',
             'model' => App\Member::class,
+        ],
+        'administers' => [
+            'driver' => 'eloquent',
+            'model' => App\Administer::class,
         ],
 
         // 'users' => [
@@ -95,6 +106,12 @@ return [
     'passwords' => [
         'members' => [
             'provider' => 'members',
+            'table' => 'password_resets',
+            'expire' => 60,
+            'throttle' => 60,
+        ],
+        'administers' => [
+            'provider' => 'administers',
             'table' => 'password_resets',
             'expire' => 60,
             'throttle' => 60,

@@ -153,5 +153,6 @@ return [
         'password' => 'パスワード',
         'password_confirmation' => 'パスワード確認',
         'email' => 'メールアドレス',
+        'login_id' => 'ログインID',
     ],
 ];

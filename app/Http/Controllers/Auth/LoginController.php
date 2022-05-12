@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Foundation\Auth\AuthenticatesUsers;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LoginController extends Controller
 {
@@ -28,6 +29,16 @@ class LoginController extends Controller
      * @var string
      */
     protected $redirectTo = RouteServiceProvider::HOME;
+
+    /**
+     * Create a new controller instance.
+     *
+     * @return void
+     */
+    public function __construct()
+    {
+        $this->middleware('guest:member')->except('logout');
+    }
 
     public function login(Request $request)
     {
@@ -66,12 +77,12 @@ class LoginController extends Controller
     }
 
     /**
-     * Create a new controller instance.
+     * Get the guard to be used during authentication.
      *
-     * @return void
+     * @return \Illuminate\Contracts\Auth\StatefulGuard
      */
-    public function __construct()
+    protected function guard()
     {
-        $this->middleware('guest')->except('logout');
+        return Auth::guard('member');
     }
 }

@@ -1,0 +1,149 @@
+@charset "UTF-8";
+main {
+    padding-top: 90px !important;
+}
+
+body {
+    background-color: #ddecf7;
+}
+
+h2 {
+    text-align: center;
+    margin-bottom: 30px;
+}
+
+/* btn */
+.btn {
+    padding: 10px 30px;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+}
+
+.submit,
+.back {
+    text-align: center;
+}
+
+.submit .btn {
+    background-color: #2f5597;
+    color: #fff;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+}
+
+.back .btn {
+    background: #fff;
+    color: #ed7d32;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 13px;
+    margin-top: 30px;
+}
+
+/* header */
+header {
+    position: fixed;
+    top: 0;
+    height: 60px;
+    width: 100%;
+    background-color: #d1cece;
+    z-index: 10;
+}
+
+.header-left {
+    float: left;
+    padding: 15px 30px;
+}
+
+.header-left p {
+    font-size: 20px;
+}
+
+.header-right {
+    float: right;
+}
+
+.header-right p {
+    display: inline-block;
+    margin-right: 20px;
+}
+
+header .btn {
+    background-color: #d1cece;
+    border: 2px solid black;
+    color: black;
+    text-decoration: none;
+    display: inline-block;
+    margin-top: 7px;
+    margin-right: 20px;
+}
+
+#logout-form {
+    display: inline-block;
+}
+
+/* form */
+.form {
+    width: 100%;
+}
+
+.form th {
+    width: 30%;
+    text-align: left;
+    padding-bottom: 10px;
+}
+
+.form td {
+    width: 70%;
+    padding-left: 20px;
+    padding-bottom: 10px;
+    font-size: 14px;
+}
+
+.login-id input,
+.password input {
+    width: 100%;
+}
+
+/* .email td {
+  color: #0c63c1;
+}
+
+.product-form .name input,
+.product-form .product-content textarea {
+  width: 100%;
+}
+
+.category select {
+  width: 40%;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+.search-form {
+  background-color: #fff;
+  border: 1px solid #000;
+  padding: 20px;
+  margin-top: 30px;
+}
+
+.search-form .free-word input {
+  width: 100%;
+  border: 1px solid #000;
+  border-radius: 3px;
+} */
+
+/* error-message */
+.error-messages {
+    color: red;
+    font-size: 12px;
+}
+
+.error-messages th,
+.error-messages td {
+    padding-bottom: 5px;
+}
