@@ -6,6 +6,16 @@
 
 require('./bootstrap');
 
+import { library, dom } from "@fortawesome/fontawesome-svg-core";
+import { faCaretSquareUp, faCaretSquareDown } from "@fortawesome/free-solid-svg-icons";
+
+library.add(
+  faCaretSquareUp,
+  faCaretSquareDown,
+);
+
+dom.watch();
+
 window.Vue = require('vue');
 
 /**

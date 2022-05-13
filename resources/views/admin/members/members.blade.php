@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-@include('components.admin_header')
+@include('components.admin_members_header', ['title' => '会員一覧', 'route' => 'admin.top', 'text' => 'トップに戻る'])
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
@@ -13,24 +13,24 @@
         <table class="form" border="1">
           <tr class="id">
             <th>ID</th>
-            <td><input type="text" name="id"></td>
+            <td><input type="text" name="id" value="{{ $defaults['id'] }}"></td>
           </tr>
 
           <tr class="gender">
             <th>性別</th>
             <td>
               <label for="man">
-                <input id="man" type="checkbox" name="gender" value="1">男性
+                <input id="man" type="checkbox" name="man" value="1" {{ $defaults['man'] ? 'checked' : '' }}>男性
               </label>
               <label for="woman">
-                <input id="woman" type="checkbox" name="gender" value="2">女性
+                <input id="woman" type="checkbox" name="woman" value="2" {{ $defaults['woman'] ? 'checked' : '' }}>女性
               </label>
             </td>
           </tr>
 
           <tr class="free-word">
             <th>フリーワード</th>
-            <td><input type="text" name="free_word"></td>
+            <td><input type="text" name="free_word" value="{{ $defaults['free_word'] }}"></td>
           </tr>
         </table>
         <div class="submit">
@@ -41,11 +41,41 @@
         <table border="1">
           <thead>
             <tr>
-              <th>ID</th>
+              <th>
+                ID
+                <form action="{{ request()->fullUrl() }}" method="GET" class="sort">
+                  <input type="hidden" name="id" value="{{ $defaults['id'] }}">
+                  <input type="hidden" name="man" value="{{ $defaults['man'] }}">
+                  <input type="hidden" name="woman" value="{{ $defaults['woman'] }}">
+                  <input type="hidden" name="free_word" value="{{ $defaults['free_word'] }}">
+                  <button type="submit" name="sort" value="{{ $sort == '' ? 1 : '' }}">
+                    @if ($sort == 0)
+                    <i class="fas fa-caret-square-down"></i>
+                    @else
+                    <i class="fas fa-caret-square-up"></i>
+                    @endif
+                  </button>
+                </form>
+              </th>
               <th>氏名</th>
               <th>メールアドレス</th>
               <th>性別</th>
-              <th>登録日時</th>
+              <th>
+                登録日時
+                <form action="{{ request()->fullUrl() }}" method="GET" class="sort">
+                  <input type="hidden" name="id" value="{{ $defaults['id'] }}">
+                  <input type="hidden" name="man" value="{{ $defaults['man'] }}">
+                  <input type="hidden" name="woman" value="{{ $defaults['woman'] }}">
+                  <input type="hidden" name="free_word" value="{{ $defaults['free_word'] }}">
+                  <button type="submit" name="sort" value="{{ $sort == '' ? 1 : '' }}">
+                    @if ($sort == 0)
+                    <i class="fas fa-caret-square-down"></i>
+                    @else
+                    <i class="fas fa-caret-square-up"></i>
+                    @endif
+                  </button>
+                </form>
+              </th>
             </tr>
           </thead>
 
@@ -62,7 +92,7 @@
           </tbody>
         </table>
         <div class="pager">
-          {{ $members->links('vendor.pagination.original_pagination') }}
+          {{ $members->appends(request()->query())->links('vendor.pagination.original_pagination') }}
         </div>
       </div>
     </div>
