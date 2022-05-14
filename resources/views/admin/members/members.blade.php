@@ -5,10 +5,13 @@
 @endsection
 
 @section('content')
-@include('components.admin_members_header', ['title' => '会員一覧', 'route' => 'admin.top', 'text' => 'トップに戻る'])
+@include('components.admin.members_header', ['title' => '会員一覧', 'route' => 'admin.top', 'text' => 'トップに戻る'])
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
+      <div class="submit mb-5" style="text-align: left;">
+        <a href="{{ route('admin.members.show_register') }}" class="btn">会員登録</a>
+      </div>
       <form action="" method="GET" class="search-form">
         <table class="form" border="1">
           <tr class="id">
@@ -76,6 +79,7 @@
                   </button>
                 </form>
               </th>
+              <th>編集</th>
             </tr>
           </thead>
 
@@ -87,6 +91,7 @@
               <td class="email">{{ $member->email }}</td>
               <td class="gender">{{ $gender[$member->gender] }}</td>
               <td class="created_at">{{ $member->created_at->format('Y/n/j') }}</td>
+              <td><a href="{{ route('admin.members.show_edit', $member->id) }}">編集</a></td>
             </tr>
             @endforeach
           </tbody>

@@ -5,7 +5,7 @@
 @endsection
 
 @section('content')
-@include('components.admin_header')
+@include('components.admin.header')
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">

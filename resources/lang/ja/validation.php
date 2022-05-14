@@ -98,7 +98,7 @@ return [
     'required'              => '※:attributeは、必須入力です。',
     'required_if'           => ':otherが:valueの場合、:attributeを指定してください。',
     'required_unless'       => ':otherが:values以外の場合、:attributeを指定してください。',
-    'required_with'         => ':valuesが指定されている場合、:attributeも指定してください。',
+    'required_with'         => '※:valuesが入力されている場合、:attributeも入力してください。',
     'required_with_all'     => ':valuesが全て指定されている場合、:attributeも指定してください。',
     'required_without'      => ':valuesが指定されていない場合、:attributeを指定してください。',
     'required_without_all'  => ':valuesが全て指定されていない場合、:attributeを指定してください。',

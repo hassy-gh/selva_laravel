@@ -4,7 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Member;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Admin\MemberEditRequest;
 use Illuminate\Http\Request;
+use App\Http\Requests\Admin\MemberRegisterRequest;
+use Illuminate\Support\Facades\Hash;
 
 class MembersController extends Controller
 {
@@ -74,5 +77,139 @@ class MembersController extends Controller
             ['\\\\', '\\%', '\\_'],
             $value
         );
+    }
+
+    private $show_register = 'Admin\MembersController@showRegisterForm';
+    private $show_confirm = 'Admin\MembersController@showConfirmForm';
+    private $show_edit = 'Admin\MembersController@showEditForm';
+    private $show_edit_confirm = 'Admin\MembersController@showEditConfirmForm';
+
+    private $formItems = [
+        'name_sei',
+        'name_mei',
+        'nickname',
+        'gender',
+        'password',
+        'password_confirmation',
+        'email',
+    ];
+
+    public function showRegisterForm()
+    {
+        return view('admin.members.register')
+            ->with('register', true);
+    }
+
+    public function post(MemberRegisterRequest $request)
+    {
+        $input = $request->only($this->formItems);
+
+        $request->session()->put('form_input', $input);
+
+        return redirect()->action($this->show_confirm);
+    }
+
+    public function showConfirmForm(Request $request)
+    {
+        $input = $request->session()->get('form_input');
+
+        $gender = config('master.gender');
+
+        if (!$input) {
+            return redirect()->action($this->show_register);
+        }
+
+        return view('admin.members.register_confirm', [
+            'input' => $input,
+            'gender' => $gender,
+            'register' => true,
+        ]);
+    }
+
+    public function register(Request $request)
+    {
+        $input = $request->session()->get('form_input');
+
+        if ($request->has('back')) {
+            return redirect()->action($this->show_register)
+                ->withInput($input);
+        }
+
+        if (!$input) {
+            return redirect()->action($this->show_register);
+        }
+
+        Member::create([
+            'name_sei' => $input['name_sei'],
+            'name_mei' => $input['name_mei'],
+            'nickname' => $input['nickname'],
+            'gender' => $input['gender'],
+            'password' => Hash::make($input['password']),
+            'email' => $input['email'],
+        ]);
+
+        $request->session()->forget('form_input');
+
+        return redirect('/admin/members');
+    }
+
+    public function showEditForm(Member $member)
+    {
+        return view('admin.members.edit')
+            ->with('member', $member)
+            ->with('register', false);
+    }
+
+    public function edit(MemberEditRequest $request, Member $member)
+    {
+        $input = $request->only($this->formItems);
+
+        $request->session()->put('form_input', $input);
+
+        return redirect()->action($this->show_edit_confirm, $member);
+    }
+
+    public function showEditConfirmForm(Request $request, Member $member)
+    {
+        $input = $request->session()->get('form_input');
+
+        $gender = config('master.gender');
+
+        if (!$input) {
+            return redirect()->action($this->show_edit, $member);
+        }
+
+        return view('admin.members.edit_confirm')
+            ->with('input', $input)
+            ->with('member', $member)
+            ->with('gender', $gender)
+            ->with('register', false);
+    }
+
+    public function update(Request $request, Member $member)
+    {
+        $input = $request->session()->get('form_input');
+
+        if ($request->has('back')) {
+            return redirect()->action($this->show_edit, $member)
+                ->withInput($input);
+        }
+
+        if (!$input) {
+            return redirect()->action($this->show_edit, $member);
+        }
+
+        $member->update([
+            'name_sei' => $input['name_sei'],
+            'name_mei' => $input['name_mei'],
+            'nickname' => $input['nickname'],
+            'gender' => $input['gender'],
+            'password' => Hash::make($input['password']),
+            'email' => $input['email'],
+        ]);
+
+        $request->session()->forget('form_input');
+
+        return redirect('/admin/members');
     }
 }

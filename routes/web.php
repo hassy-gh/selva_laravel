@@ -92,4 +92,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function 
     Route::post('/logout', 'Admin\LoginController@logout')->name('admin.logout');
     // members
     Route::get('/members', 'Admin\MembersController@showMembers')->name('admin.members.members');
+    // member_register
+    Route::get('/members/register', 'Admin\MembersController@showRegisterForm')->name('admin.members.show_register');
+    Route::post('/members/register', 'Admin\MembersController@post')->name('admin.members.post');
+    Route::get('/members/register/confirm', 'Admin\MembersController@showConfirmForm')->name('admin.members.show_register_confirm');
+    Route::post('/members/register/register', 'Admin\MembersController@register')->name('admin.members.register');
+    // member_edit
+    Route::get('/members/{member}/edit', 'Admin\MembersController@showEditForm')->name('admin.members.show_edit');
+    Route::post('/members/{member}/edit', 'Admin\MembersController@edit')->name('admin.members.edit');
+    Route::get('/members/{member}/edit/confirm', 'Admin\MembersController@showEditConfirmForm')->name('admin.members.show_edit_confirm');
+    Route::post('/members/{member}/edit/update', 'Admin\MembersController@update')->name('admin.members.update');
 });
