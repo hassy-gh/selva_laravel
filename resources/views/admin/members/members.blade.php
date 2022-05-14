@@ -80,6 +80,7 @@
                 </form>
               </th>
               <th>編集</th>
+              <th>詳細</th>
             </tr>
           </thead>
 
@@ -87,11 +88,16 @@
             @foreach ($members as $member)
             <tr>
               <td class="id">{{ $member->id }}</td>
-              <td class="name">{{ $member->name_sei . ' ' . $member->name_mei }}</td>
+              <td class="name">
+                <a href="{{ route('admin.members.detail', $member->id) }}">
+                  {{ $member->name_sei . ' ' . $member->name_mei }}
+                </a>
+              </td>
               <td class="email">{{ $member->email }}</td>
               <td class="gender">{{ $gender[$member->gender] }}</td>
               <td class="created_at">{{ $member->created_at->format('Y/n/j') }}</td>
               <td><a href="{{ route('admin.members.show_edit', $member->id) }}">編集</a></td>
+              <td><a href="{{ route('admin.members.detail', $member->id) }}">詳細</a></td>
             </tr>
             @endforeach
           </tbody>

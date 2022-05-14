@@ -102,4 +102,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function 
     Route::post('/members/{member}/edit', 'Admin\MembersController@edit')->name('admin.members.edit');
     Route::get('/members/{member}/edit/confirm', 'Admin\MembersController@showEditConfirmForm')->name('admin.members.show_edit_confirm');
     Route::post('/members/{member}/edit/update', 'Admin\MembersController@update')->name('admin.members.update');
+    // member_detail
+    Route::get('/members/{member}/detail', 'Admin\MembersController@showDetail')->name('admin.members.detail');
+    Route::post('/members/{member}/delete', 'Admin\MembersController@delete')->name('admin.members.delete');
 });

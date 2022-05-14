@@ -48,6 +48,10 @@ h2 {
     padding: 0;
 }
 
+.buttons {
+    display: flex;
+}
+
 /* header */
 header {
     position: fixed;
@@ -86,7 +90,8 @@ header .btn {
     margin-right: 20px;
 }
 
-#logout-form {
+#logout-form,
+#delete-form {
     display: inline-block;
 }
 
@@ -193,4 +198,20 @@ header .btn {
 
 .members .email {
     color: #0c63c1;
+}
+
+/* member_detail */
+.profile {
+    width: 100%;
+    margin-top: 30px;
+}
+
+.profile th {
+    width: 30%;
+    padding-bottom: 30px;
+}
+
+.profile td {
+    width: 70%;
+    padding-bottom: 30px;
 }

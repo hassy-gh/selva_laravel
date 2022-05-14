@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Admin\MemberEditRequest;
 use Illuminate\Http\Request;
 use App\Http\Requests\Admin\MemberRegisterRequest;
+use Carbon\Carbon;
 use Illuminate\Support\Facades\Hash;
 
 class MembersController extends Controller
@@ -210,6 +211,22 @@ class MembersController extends Controller
 
         $request->session()->forget('form_input');
 
+        return redirect('/admin/members');
+    }
+
+    public function showDetail(Member $member)
+    {
+        $gender = config('master.gender');
+
+        return view('admin.members.detail')
+            ->with('member', $member)
+            ->with('gender', $gender);
+    }
+
+    public function delete(Member $member)
+    {
+        $member->deleted_at = Carbon::now();
+        $member->save();
         return redirect('/admin/members');
     }
 }
