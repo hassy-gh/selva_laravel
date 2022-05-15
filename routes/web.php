@@ -105,4 +105,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function 
     // member_detail
     Route::get('/members/{member}/detail', 'Admin\MembersController@showDetail')->name('admin.members.detail');
     Route::post('/members/{member}/delete', 'Admin\MembersController@delete')->name('admin.members.delete');
+    // categories
+    Route::get('/categories', 'Admin\CategoriesController@showCategories')->name('admin.categories.categories');
 });

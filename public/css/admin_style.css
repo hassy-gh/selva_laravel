@@ -186,13 +186,15 @@ header .btn {
     margin-top: 20px;
 }
 
-/* members */
-.members table {
+/* index */
+.members table,
+.categories table {
     width: 100%;
     text-align: center;
 }
 
-.members thead {
+.members thead,
+.categories thead {
     background-color: #d1cece;
 }
 
