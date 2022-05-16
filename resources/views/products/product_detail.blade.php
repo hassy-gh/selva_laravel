@@ -11,9 +11,9 @@
     <div class="col-md-10">
       <div class="product-detail">
         <p class="category">
-          {{ $config_categories[$product->product_category_id] }}
+          {{ $categories->find($product->product_category_id)->name }}
           >
-          {{ $config_subcategories[$product->product_subcategory_id] }}
+          {{ $subcategories->find($product->product_subcategory_id)->name }}
         </p>
         <h3 class="name">{{ $product->name }}</h3>
         <span class="updated-at">更新日時：{{ $product->updated_at->format('Ymd') }}</span>

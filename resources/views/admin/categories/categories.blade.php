@@ -9,6 +9,9 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
+      <div class="submit mb-5" style="text-align: left;">
+        <a href="{{ route('admin.categories.show_register') }}" class="btn">商品カテゴリ登録</a>
+      </div>
       <form action="" method="GET" class="search-form">
         <table class="form" border="1">
           <tr class="id">
@@ -72,7 +75,7 @@
                 </a>
               </td>
               <td class="created_at">{{ $category->created_at->format('Y/n/j') }}</td>
-              <td><a href="">編集</a></td>
+              <td><a href="{{ route('admin.categories.show_edit', $category->id) }}">編集</a></td>
             </tr>
             @endforeach
           </tbody>

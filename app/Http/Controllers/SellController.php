@@ -30,8 +30,8 @@ class SellController extends Controller
 
     public function showSellForm()
     {
-        $categories = ProductCategory::all();
-        $subcategories = ProductSubcategory::all();
+        $categories = ProductCategory::whereNull('deleted_at')->get();
+        $subcategories = ProductSubcategory::whereNull('deleted_at')->get();
         return view('sell.form')
             ->with('categories', $categories)
             ->with('subcategories', $subcategories);
@@ -49,8 +49,8 @@ class SellController extends Controller
     public function showConfirmForm(Request $request)
     {
         $input = $request->session()->get('form_input');
-        $categories = config('master.product_category');
-        $subcategories = config('master.product_subcategory');
+        $category = ProductCategory::find($input['product_category_id']);
+        $subcategory = ProductSubcategory::find($input['product_subcategory_id']);
 
         if (!$input) {
             return redirect()->action($this->form_show);
@@ -58,8 +58,8 @@ class SellController extends Controller
 
         return view('sell.confirm', [
             'input' => $input,
-            'categories' => $categories,
-            'subcategories' => $subcategories,
+            'category' => $category,
+            'subcategory' => $subcategory,
         ]);
     }
 
@@ -100,7 +100,9 @@ class SellController extends Controller
     public function category(Request $request)
     {
         $cateVal = $request['category_val'];
-        $subcategories = ProductSubcategory::where('product_category_id', $cateVal)->get();
+        $subcategories = ProductSubcategory::where('product_category_id', $cateVal)
+            ->whereNull('deleted_at')
+            ->get();
         return response()->json($subcategories);
     }
 

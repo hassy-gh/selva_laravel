@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Carbon\Carbon;
 use App\Http\Requests\ProfileEditRequest;
+use App\ProductCategory;
+use App\ProductSubcategory;
 
 class ProfileController extends Controller
 {
@@ -102,8 +104,8 @@ class ProfileController extends Controller
     {
         $member = Auth::user();
         $reviews = $member->reviews()->whereNull('deleted_at')->orderBy('id', 'DESC')->paginate(5);
-        $categories = config('master.product_category');
-        $subcategories = config('master.product_subcategory');
+        $categories = ProductCategory::all();
+        $subcategories = ProductSubcategory::all();
         $evaluations = config('master.evaluations');
 
         return view('mypage.reviews')

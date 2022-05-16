@@ -36,12 +36,9 @@ class ProductsController extends Controller
             'free_word' => $request->input('free_word'),
         ];
 
-        // $products = Product::orderBy('id', 'DESC')->paginate(10);
         $products = $query->orderBy('id', 'DESC')->paginate(10);
         $categories = ProductCategory::all();
         $subcategories = ProductSubcategory::all();
-        $config_categories = config('master.product_category');
-        $config_subcategories = config('master.product_subcategory');
 
         $averages = [];
         foreach ($products as $product) {
@@ -56,8 +53,6 @@ class ProductsController extends Controller
             ->with('defaults', $defaults)
             ->with('categories', $categories)
             ->with('subcategories', $subcategories)
-            ->with('config_categories', $config_categories)
-            ->with('config_subcategories', $config_subcategories)
             ->with('averages', $averages)
             ->with('evaluations', $config_evaluations);
     }
@@ -73,8 +68,8 @@ class ProductsController extends Controller
 
     public function showProductDetail(Product $product)
     {
-        $config_categories = config('master.product_category');
-        $config_subcategories = config('master.product_subcategory');
+        $categories = ProductCategory::all();
+        $subcategories = ProductSubcategory::all();
 
         $average = $product->reviews()
             ->whereNull('deleted_at')
@@ -84,8 +79,8 @@ class ProductsController extends Controller
 
         return view('products.product_detail')
             ->with('product', $product)
-            ->with('config_categories', $config_categories)
-            ->with('config_subcategories', $config_subcategories)
+            ->with('categories', $categories)
+            ->with('subcategories', $subcategories)
             ->with('average', $average)
             ->with('evaluations', $config_evaluations);
     }

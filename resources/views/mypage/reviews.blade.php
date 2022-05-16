@@ -21,7 +21,7 @@
           </div>
           <div class="review-content">
             <span class="category">
-              {{ $categories[$review->product->product_category_id] }}>{{ $subcategories[$review->product->product_subcategory_id] }}
+              {{ $categories->find($review->product->product_category_id)->name }}>{{ $subcategories->find($review->product->product_subcategory_id)->name }}
             </span>
             <h3>{{ $review->product->name }}</h3>
             <p>{{ $evaluations[$review->evaluation]. ' ' . $review->evaluation }}</p>

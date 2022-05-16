@@ -117,7 +117,9 @@ header .btn {
 .password input,
 .nickname input,
 .password-confirmation input,
-.email input {
+.email input,
+.category-name input,
+.subcategory-name input {
     width: 100%;
 }
 

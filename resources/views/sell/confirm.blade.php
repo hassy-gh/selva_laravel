@@ -23,7 +23,7 @@
           <tr class="category">
             <th>商品カテゴリ</th>
             <td>
-              {{ $categories[$input['product_category_id']] }} > {{ $subcategories[$input['product_subcategory_id']] }}
+              {{ $category->name }} > {{ $subcategory->name }}
               <input type="hidden" name="product_category_id" value="{{ $input['product_category_id'] }}">
               <input type="hidden" name="product_subcategory_id" value="{{ $input['product_subcategory_id'] }}">
             </td>

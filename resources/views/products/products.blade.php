@@ -59,7 +59,7 @@
           </div>
           <div class="product-caption">
             <span class="category">
-              {{ $config_categories[$product->product_category_id] }}>{{ $config_subcategories[$product->product_subcategory_id] }}
+              {{ $categories->find($product->product_category_id)->name }}>{{ $subcategories->find($product->product_subcategory_id)->name }}
             </span>
             <a href="{{ route('products.detail', [$product->id]) }}">{{ $product->name }}</a>
             <p>
