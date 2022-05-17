@@ -9,7 +9,6 @@ use App\ProductSubcategory;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
-use Throwable;
 
 class CategoriesController extends Controller
 {
@@ -230,6 +229,32 @@ class CategoriesController extends Controller
 
         $request->session()->forget('form_input');
 
+        return redirect('/admin/categories');
+    }
+
+    public function showDetail(ProductCategory $category)
+    {
+        $subcategories = $category->productSubcategories()
+            ->whereNull('deleted_at')
+            ->get();
+
+        return view('admin.categories.detail')
+            ->with('category', $category)
+            ->with('subcategories', $subcategories);
+    }
+
+    public function delete(ProductCategory $category)
+    {
+        $category->deleted_at = Carbon::now();
+        $category->save();
+
+        $subcategories = $category->productSubcategories()
+            ->whereNull('deleted_at')
+            ->get();
+        foreach ($subcategories as $subcategory) {
+            $subcategory->deleted_at = Carbon::now();
+            $subcategory->save();
+        }
         return redirect('/admin/categories');
     }
 }

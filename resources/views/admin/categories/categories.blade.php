@@ -62,6 +62,7 @@
                 </form>
               </th>
               <th>編集</th>
+              <th>詳細</th>
             </tr>
           </thead>
 
@@ -70,12 +71,21 @@
             <tr>
               <td class="id">{{ $category->id }}</td>
               <td class="name">
-                <a href="">
+                <a href="{{ route('admin.categories.detail', $category->id) }}">
                   {{ $category->name }}
                 </a>
               </td>
               <td class="created_at">{{ $category->created_at->format('Y/n/j') }}</td>
-              <td><a href="{{ route('admin.categories.show_edit', $category->id) }}">編集</a></td>
+              <td>
+                <a href="{{ route('admin.categories.show_edit', $category->id) }}">
+                  編集
+                </a>
+              </td>
+              <td>
+                <a href="{{ route('admin.categories.detail', $category->id) }}">
+                  詳細
+                </a>
+              </td>
             </tr>
             @endforeach
           </tbody>

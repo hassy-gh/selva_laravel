@@ -112,9 +112,12 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function 
     Route::post('/categories/register', 'Admin\CategoriesController@post')->name('admin.categories.post');
     Route::get('/categories/register/confirm', 'Admin\CategoriesController@showConfirmForm')->name('admin.categories.show_register_confirm');
     Route::post('/categories/register/register', 'Admin\CategoriesController@register')->name('admin.categories.register');
-    // member_edit
+    // category_edit
     Route::get('/categories/{category}/edit', 'Admin\CategoriesController@showEditForm')->name('admin.categories.show_edit');
     Route::post('/categories/{category}/edit', 'Admin\CategoriesController@edit')->name('admin.categories.edit');
     Route::get('/categories/{category}/edit/confirm', 'Admin\CategoriesController@showEditConfirmForm')->name('admin.categories.show_edit_confirm');
     Route::post('/categories/{category}/edit/update', 'Admin\CategoriesController@update')->name('admin.categories.update');
+    // category_detail
+    Route::get('/categories/{category}/detail', 'Admin\CategoriesController@showDetail')->name('admin.categories.detail');
+    Route::post('/categories/{category}/delete', 'Admin\CategoriesController@delete')->name('admin.categories.delete');
 });
