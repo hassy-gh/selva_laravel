@@ -120,4 +120,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function 
     // category_detail
     Route::get('/categories/{category}/detail', 'Admin\CategoriesController@showDetail')->name('admin.categories.detail');
     Route::post('/categories/{category}/delete', 'Admin\CategoriesController@delete')->name('admin.categories.delete');
+    //products
+    Route::get('/products', 'Admin\ProductsController@showProducts')->name('admin.products.products');
 });

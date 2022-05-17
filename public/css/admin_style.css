@@ -190,13 +190,15 @@ header .btn {
 
 /* index */
 .members table,
-.categories table {
+.categories table,
+.products table {
     width: 100%;
     text-align: center;
 }
 
 .members thead,
-.categories thead {
+.categories thead,
+.products thead {
     background-color: #d1cece;
 }
 
