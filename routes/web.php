@@ -135,4 +135,6 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function 
     // product_detail
     Route::get('/products/{product}/detail', 'Admin\ProductsController@showDetail')->name('admin.products.detail');
     Route::post('/products/{product}/delete', 'Admin\ProductsController@delete')->name('admin.products.delete');
+    // reviews
+    Route::get('/reviews', 'Admin\ReviewsController@showReviews')->name('admin.reviews.reviews');
 });

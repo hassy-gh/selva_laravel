@@ -194,14 +194,16 @@ input[type="file"] {
 /* index */
 .members table,
 .categories table,
-.products table {
+.products table,
+.reviews table {
     width: 100%;
     text-align: center;
 }
 
 .members thead,
 .categories thead,
-.products thead {
+.products thead,
+.reviews thead {
     background-color: #d1cece;
 }
 
@@ -253,10 +255,6 @@ input[type="file"] {
 .reviews .review th {
     width: 30%;
     padding: 10px 0;
-}
-
-.reviews .review .name th {
-    color: #0c63c1;
 }
 
 .reviews .review td {

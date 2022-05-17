@@ -18,6 +18,9 @@
       <div class="back">
         <a href="{{ route('admin.products.products') }}" class="btn">商品一覧</a>
       </div>
+      <div class="back">
+        <a href="{{ route('admin.reviews.reviews') }}" class="btn">商品レビュー一覧</a>
+      </div>
     </div>
   </div>
 </div>
