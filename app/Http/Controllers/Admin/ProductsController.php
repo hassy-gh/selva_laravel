@@ -7,6 +7,7 @@ use App\ProductSubcategory;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\SellRequest;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ProductsController extends Controller
@@ -211,6 +212,40 @@ class ProductsController extends Controller
         ]);
 
         $request->session()->forget('form_input');
+
+        return redirect('/admin/products');
+    }
+
+    public function showDetail(Product $product)
+    {
+        $category = ProductCategory::find($product->product_category_id);
+        $subcategory = ProductSubcategory::find($product->product_subcategory_id);
+        $reviews = $product->reviews()->whereNull('deleted_at')->paginate(3);
+        $evaluations = config('master.evaluations');
+        $average = $product->reviews()
+            ->whereNull('deleted_at')
+            ->pluck('evaluation')
+            ->avg();
+
+        return view('admin.products.detail')
+            ->with('product', $product)
+            ->with('category', $category)
+            ->with('subcategory', $subcategory)
+            ->with('reviews', $reviews)
+            ->with('evaluations', $evaluations)
+            ->with('average', $average);
+    }
+
+    public function delete(Product $product)
+    {
+        $product->deleted_at = Carbon::now();
+        $product->save();
+
+        $reviews = $product->reviews()->whereNull('deleted_at')->get();
+        foreach ($reviews as $review) {
+            $review->deleted_at = Carbon::now();
+            $review->save();
+        }
 
         return redirect('/admin/products');
     }

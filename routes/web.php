@@ -132,4 +132,7 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function 
     Route::post('/products/{product}/edit', 'Admin\ProductsController@edit')->name('admin.products.edit');
     Route::get('/products/{product}/edit/confirm', 'Admin\ProductsController@showEditConfirmForm')->name('admin.products.show_edit_confirm');
     Route::post('/products/{product}/edit/update', 'Admin\ProductsController@update')->name('admin.products.update');
+    // product_detail
+    Route::get('/products/{product}/detail', 'Admin\ProductsController@showDetail')->name('admin.products.detail');
+    Route::post('/products/{product}/delete', 'Admin\ProductsController@delete')->name('admin.products.delete');
 });

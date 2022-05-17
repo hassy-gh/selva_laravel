@@ -71,7 +71,7 @@
             <tr>
               <td class="id">{{ $product->id }}</td>
               <td class="name">
-                <a href="">
+                <a href="{{ route('admin.products.detail', $product->id) }}">
                   {{ $product->name }}
                 </a>
               </td>
@@ -82,7 +82,7 @@
                 </a>
               </td>
               <td>
-                <a href="">
+                <a href="{{ route('admin.products.detail', $product->id) }}">
                   詳細
                 </a>
               </td>
