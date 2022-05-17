@@ -27,6 +27,7 @@ Route::get('/password/send', 'Auth\ForgotPasswordController@showSendEmail')->nam
 // Route::get('/home', 'HomeController@index')->name('home');
 
 // sell
+Route::post('/image-upload', 'SellController@imageUpload')->name('sell.image_upload');
 Route::post('/category', 'SellController@category')->name('sell.category');
 Route::get('/products', 'ProductsController@showProducts')->name('products.index');
 Route::get('/products/{product}', 'ProductsController@showProductDetail')->name('products.detail');
@@ -40,7 +41,6 @@ Route::group(['middleware' => 'auth:member'], function () {
     Route::post('/sell', 'SellController@sellProduct')->name('sell.sell');
     Route::get('/sell/confirm', 'SellController@showConfirmForm')->name('sell.show_confirm');
     Route::post('/sell/confirm', 'SellController@confirm')->name('sell.confirm');
-    Route::post('/image-upload', 'SellController@imageUpload')->name('sell.image_upload');
     // review
     Route::get('/products/{product}/review', 'ReviewController@showReviewForm')->name('review.form');
     Route::post('/products/{product}/review', 'ReviewController@reviewPost')->name('review.post');
@@ -122,4 +122,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function 
     Route::post('/categories/{category}/delete', 'Admin\CategoriesController@delete')->name('admin.categories.delete');
     //products
     Route::get('/products', 'Admin\ProductsController@showProducts')->name('admin.products.products');
+    // product_register
+    Route::get('/products/register', 'Admin\ProductsController@showRegisterForm')->name('admin.products.show_register');
+    Route::post('/products/register', 'Admin\ProductsController@post')->name('admin.products.post');
+    Route::get('/products/register/confirm', 'Admin\ProductsController@showConfirmForm')->name('admin.products.show_register_confirm');
+    Route::post('/products/register/register', 'Admin\ProductsController@register')->name('admin.products.register');
+    // product_edit
+    Route::get('/products/{product}/edit', 'Admin\ProductsController@showEditForm')->name('admin.products.show_edit');
+    Route::post('/products/{product}/edit', 'Admin\ProductsController@edit')->name('admin.products.edit');
+    Route::get('/products/{product}/edit/confirm', 'Admin\ProductsController@showEditConfirmForm')->name('admin.products.show_edit_confirm');
+    Route::post('/products/{product}/edit/update', 'Admin\ProductsController@update')->name('admin.products.update');
 });

@@ -9,6 +9,9 @@
 <div class="container">
   <div class="row justify-content-center">
     <div class="col-md-8">
+      <div class="submit mb-5" style="text-align: left;">
+        <a href="{{ route('admin.products.show_register') }}" class="btn">商品登録</a>
+      </div>
       <form action="" method="GET" class="search-form">
         <table class="form" border="1">
           <tr class="id">
@@ -74,7 +77,7 @@
               </td>
               <td class="created_at">{{ $product->created_at->format('Y/n/j') }}</td>
               <td>
-                <a href="">
+                <a href="{{ route('admin.products.show_edit', $product->id) }}">
                   編集
                 </a>
               </td>
