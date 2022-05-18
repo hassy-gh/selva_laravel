@@ -206,8 +206,7 @@ class CategoriesController extends Controller
 
             $subcategories = $category->productSubcategories()->get();
             foreach ($subcategories as $subcategory) {
-                $subcategory->deleted_at = Carbon::now();
-                $subcategory->save();
+                $subcategory->delete();
             }
 
             foreach ($input['subcategory_name'] as $key => $name) {
