@@ -137,4 +137,14 @@ Route::group(['prefix' => 'admin', 'middleware' => 'auth:administer'], function 
     Route::post('/products/{product}/delete', 'Admin\ProductsController@delete')->name('admin.products.delete');
     // reviews
     Route::get('/reviews', 'Admin\ReviewsController@showReviews')->name('admin.reviews.reviews');
+    // review_register
+    Route::get('/reviews/register', 'Admin\ReviewsController@showRegisterForm')->name('admin.reviews.show_register');
+    Route::post('/reviews/register', 'Admin\ReviewsController@post')->name('admin.reviews.post');
+    Route::get('/reviews/register/confirm', 'Admin\ReviewsController@showConfirmForm')->name('admin.reviews.show_register_confirm');
+    Route::post('/reviews/register/register', 'Admin\ReviewsController@register')->name('admin.reviews.register');
+    // review_edit
+    Route::get('/reviews/{review}/edit', 'Admin\ReviewsController@showEditForm')->name('admin.reviews.show_edit');
+    Route::post('/reviews/{review}/edit', 'Admin\ReviewsController@edit')->name('admin.reviews.edit');
+    Route::get('/reviews/{review}/edit/confirm', 'Admin\ReviewsController@showEditConfirmForm')->name('admin.reviews.show_edit_confirm');
+    Route::post('/reviews/{review}/edit/update', 'Admin\ReviewsController@update')->name('admin.reviews.update');
 });

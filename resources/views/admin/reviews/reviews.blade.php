@@ -10,7 +10,7 @@
   <div class="row justify-content-center">
     <div class="col-md-8">
       <div class="submit mb-5" style="text-align: left;">
-        <a href="" class="btn">商品レビュー登録</a>
+        <a href="{{ route('admin.reviews.show_register') }}" class="btn">商品レビュー登録</a>
       </div>
       <form action="" method="GET" class="search-form">
         <table class="form" border="1">
@@ -76,7 +76,7 @@
               <td class="evaluation">{{ $review->evaluation }}</td>
               <td class="comment">{!! Str::limit(nl2br($review->comment), 14) !!}</td>
               <td class="created_at">{{ $review->created_at->format('Y/n/j') }}</td>
-              <td><a href="">編集</a></td>
+              <td><a href="{{ route('admin.reviews.show_edit', $review->id) }}">編集</a></td>
               <td><a href="">詳細</a></td>
             </tr>
             @endforeach
