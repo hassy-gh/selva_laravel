@@ -118,7 +118,7 @@
           <tr>
             <th></th>
             <td class="submit">
-              <a href="" class="btn" style="text-align: right;">商品レビュー詳細</a>
+              <a href="{{ route('admin.reviews.detail', $review->id) }}" class="btn" style="text-align: right;">商品レビュー詳細</a>
             </td>
           </tr>
         </table>

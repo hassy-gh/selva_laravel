@@ -74,10 +74,14 @@
               <td class="id">{{ $review->id }}</td>
               <td class="product-id">{{ $review->product_id }}</td>
               <td class="evaluation">{{ $review->evaluation }}</td>
-              <td class="comment">{!! Str::limit(nl2br($review->comment), 14) !!}</td>
+              <td class="comment">
+                <a href="{{ route('admin.reviews.detail', $review->id) }}">
+                  {!! Str::limit(nl2br($review->comment), 14) !!}
+                </a>
+              </td>
               <td class="created_at">{{ $review->created_at->format('Y/n/j') }}</td>
               <td><a href="{{ route('admin.reviews.show_edit', $review->id) }}">編集</a></td>
-              <td><a href="">詳細</a></td>
+              <td><a href="{{ route('admin.reviews.detail', $review->id) }}">詳細</a></td>
             </tr>
             @endforeach
           </tbody>

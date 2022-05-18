@@ -6,6 +6,7 @@ use App\Review;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\ReviewRequest;
 use App\Product;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class ReviewsController extends Controller
@@ -201,6 +202,28 @@ class ReviewsController extends Controller
         ]);
 
         $request->session()->forget('form_input');
+
+        return redirect('/admin/reviews');
+    }
+
+    public function showDetail(Review $review)
+    {
+        $evaluations = config('master.evaluations');
+        $average = Review::where('product_id', $review->product->id)
+            ->whereNull('deleted_at')
+            ->pluck('evaluation')
+            ->avg();
+
+        return view('admin.reviews.detail')
+            ->with('review', $review)
+            ->with('evaluations', $evaluations)
+            ->with('average', $average);
+    }
+
+    public function delete(Review $review)
+    {
+        $review->deleted_at = Carbon::now();
+        $review->save();
 
         return redirect('/admin/reviews');
     }
